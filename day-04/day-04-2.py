@@ -9,6 +9,7 @@ lines = input.readlines()
 numbers = [int(num) for num in lines[0].split(',')]
 tables = [0] * 2 * nt
 n = t = bingo = 0
+bingot = []
 
 for n in range(nt):
     taba = n
@@ -37,14 +38,16 @@ for number in numbers:
         pos = 0
         for pos in range(5):
             if tables[tabb][pos][0] + tables[tabb][pos][1] + tables[tabb][pos][2] + tables[tabb][pos][3] + tables[tabb][pos][4] == 5:
-                bingo = 1
+                if not taba in bingot:
+                    bingot.append(taba)
             if tables[tabb][0][pos] + tables[tabb][1][pos] + tables[tabb][2][pos] + tables[tabb][3][pos] + tables[tabb][4][pos] == 5:
-                bingo = 2
-            if bingo == 1:
-                print('Bingo! Table: ' + str(taba) + ' Line: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
-            if bingo == 2:
-                print('Bingo! Table: ' + str(taba) + ' Row: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
-            if bingo > 0:
+                if not taba in bingot:
+                    bingot.append(taba)
+            #if bingo == 1:
+            #    print('Bingo! Table: ' + str(taba) + ' Line: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
+            #if bingo == 2:
+            #    print('Bingo! Table: ' + str(taba) + ' Row: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
+            if len(bingot) == nt:
                 ct1 = tabsum = 0
                 for ct1 in range(5):
                     ct2 = 0
