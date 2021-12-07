@@ -43,10 +43,6 @@ for number in numbers:
             if tables[tabb][0][pos] + tables[tabb][1][pos] + tables[tabb][2][pos] + tables[tabb][3][pos] + tables[tabb][4][pos] == 5:
                 if not taba in bingot:
                     bingot.append(taba)
-            #if bingo == 1:
-            #    print('Bingo! Table: ' + str(taba) + ' Line: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
-            #if bingo == 2:
-            #    print('Bingo! Table: ' + str(taba) + ' Row: ' + str(pos) + ' Turn: ' + str(t) + ' Number: ' + str(number))
             if len(bingot) == nt:
                 ct1 = tabsum = 0
                 for ct1 in range(5):
