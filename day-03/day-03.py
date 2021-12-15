@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 
-with open('input') as input:
-#with open('input-test') as input:
+import copy
+
+print()
+print('--- Day 3: Binary Diagnostic ---')
+
+data = 'input'
+#data = 'input-test'
+
+print('Input file is: ' + str(data), end = '\n' * 2)
+
+with open(data) as input:
     numbers = input.read().splitlines()
 
 gamma = ''
@@ -25,37 +34,59 @@ for j in range(len(numbers[0])):
     zeroes = 0
 
 print('--- Part One ---')
-print('Power consumption is: ' + str(int(gamma, 2) * int(epsilon, 2)))
-print()
+print('Power consumption is: ' + str(int(gamma, 2) * int(epsilon, 2)), end = '\n' * 2)
 
-ones = 0
-zeroes = 0
-oxygen = numbers
-co2 = numbers
+oxygen = copy.deepcopy(numbers)
+co2 = copy.deepcopy(numbers)
 
 for j in range(len(oxygen[0])):
+    ones = 0
+    zeroes = 0
     for i in range(len(oxygen)):
         if oxygen[i][j] == '0':
             zeroes += 1
-        else:
+        elif oxygen[i][j] == '1':
             ones += 1
     if ones >= zeroes:
-        oxygenold = oxygen
         for k in range(len(oxygen)):
-            if oxygenold[k][j] == '0':
-                oxygen[k] = ''
+            if oxygen[k][j] == '0':
+                oxygen[k] = 'X' * len(oxygen[0])
     if ones < zeroes:
-        oxygenold = oxygen
         for k in range(len(oxygen)):
-            if oxygenold[k][j] != '0':
-                oxygen[k] = ''
+            if oxygen[k][j] == '1':
+                oxygen[k] = 'X' * len(oxygen[0])
+    oxygen = list(dict.fromkeys(oxygen))
+    try:
+        oxygen.remove('X' * len(oxygen[0]))
+    except:
+        True
+    if len(oxygen) == 1:
+        oxygen = oxygen[0]
+        break
+for j in range(len(co2[0])):
+    ones = 0
+    zeroes = 0
+    for i in range(len(co2)):
+        if co2[i][j] == '0':
+            zeroes += 1
+        elif co2[i][j] == '1':
+            ones += 1
+    if ones < zeroes:
+        for k in range(len(co2)):
+            if co2[k][j] == '0':
+                co2[k] = 'X' * len(co2[0])
+    if ones >= zeroes:
+        for k in range(len(co2)):
+            if co2[k][j] == '1':
+                co2[k] = 'X' * len(co2[0])
+    co2 = list(dict.fromkeys(co2))
+    try:
+        co2.remove('X' * len(co2[0]))
+    except:
+        True
+    if len(co2) == 1:
+        co2 = co2[0]
+        break
 
-print(oxygen)
-
-
-
-
-
-quit()
 print('--- Part Two ---')
-print('Life support rating is: ' + str(horizontal * depth))
+print('Life support rating is: ' + str(int(oxygen, 2) * int(co2, 2)), end = '\n' * 2)
