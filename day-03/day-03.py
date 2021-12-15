@@ -2,13 +2,15 @@
 
 import copy
 
-print()
-print('--- Day 3: Binary Diagnostic ---')
+C1 = '\033[92m'
+C0 = '\033[0m'
 
 data = 'input'
 #data = 'input-test'
 
-print('Input file is: ' + str(data), end = '\n' * 2)
+print()
+print('--- Day 3: Binary Diagnostic ---')
+print('Input file is: ' + C1 + str(data) + C0, end = '\n' * 2)
 
 with open(data) as input:
     numbers = input.read().splitlines()
@@ -34,7 +36,7 @@ for j in range(len(numbers[0])):
     zeroes = 0
 
 print('--- Part One ---')
-print('Power consumption is: ' + str(int(gamma, 2) * int(epsilon, 2)), end = '\n' * 2)
+print('Power consumption is: ' + C1 + str(int(gamma, 2) * int(epsilon, 2)) + C0, end = '\n' * 2)
 
 oxygen = copy.deepcopy(numbers)
 co2 = copy.deepcopy(numbers)
@@ -63,6 +65,7 @@ for j in range(len(oxygen[0])):
     if len(oxygen) == 1:
         oxygen = oxygen[0]
         break
+
 for j in range(len(co2[0])):
     ones = 0
     zeroes = 0
@@ -89,4 +92,4 @@ for j in range(len(co2[0])):
         break
 
 print('--- Part Two ---')
-print('Life support rating is: ' + str(int(oxygen, 2) * int(co2, 2)), end = '\n' * 2)
+print('Life support rating is: ' + C1 + str(int(oxygen, 2) * int(co2, 2)) + C0, end = '\n' * 2)

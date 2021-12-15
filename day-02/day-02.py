@@ -1,7 +1,16 @@
 #!/usr/bin/env python3
 
-with open('input') as input:
-#with open('input-test') as input:
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 2: Dive! ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
+with open(data) as input:
     commands = input.read().splitlines()
 for i in range(len(commands)):
     commands[i] = commands[i].split()
@@ -19,8 +28,7 @@ for command in commands:
         depth -= command[1]
 
 print('--- Part One ---')
-print('Answer is: ' + str(horizontal * depth))
-print()
+print('Answer is: ' + C1 + str(horizontal * depth) + C0, end = '\n' * 2)
 
 horizontal = 0
 depth = 0
@@ -36,4 +44,4 @@ for command in commands:
         aim -= command[1]
 
 print('--- Part Two ---')
-print('Answer is: ' + str(horizontal * depth))
+print('Answer is: ' + C1 + str(horizontal * depth) + C0, end = '\n' * 2)
