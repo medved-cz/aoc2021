@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 11: Dumbo Octopus ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
 def split(word):
     return list(word)
 
@@ -22,10 +32,9 @@ def printnumberslong(numbers,lenght):
         print(u'\u2560' + (u'\u2550' * lenght + u'\u256c') * (len(numbers[0]) - 1) + u'\u2550' * lenght + u'\u2563')
     print(u'\u255a' + (u'\u2550' * lenght + u'\u2569') * (len(numbers[0]) - 1) + u'\u2550' * lenght + u'\u255d')
 
-input = open("input", "r")
-#input = open("input-test", "r")
-
+input = open(data, "r")
 inputlist = input.readlines()
+input.close
 lines = len(inputlist)
 rows = len(inputlist[0].replace('\n',''))
 numbers1 = [0] * lines
@@ -33,12 +42,11 @@ numbers2 = [0] * lines
 steps = 1000
 flashes = 0
 flashesold = 0
+
 for x in range(lines):
     numbers1[x] = [int(num) for num in split(inputlist[x].replace('\n',''))]
     numbers2[x] = [0] * rows
-print('Before any steps:')
-printnumbers(numbers1)
-print()
+
 for i in range(steps):
     for y in range(lines):
         for x in range(rows):
@@ -77,13 +85,10 @@ for i in range(steps):
                                 numbers1[m][n] += 1
                     numbers1[y][x] = 0
     if i == 100:
-        print('After step ' + str(i) + ':')
-        printnumbers(numbers1)
-        print('After ' + str(i) + ' steps, there have been a total of ' + str(flashes) + ' flashes.')
-        print()
+        print('--- Part One ---')
+        print('After ' + C1 + str(i) + C0 + ' steps, there have been a total of ' + C1 + str(flashes) + C0 + ' flashes.', end = '\n' * 2)
     if flashes == flashesold + lines * rows:
-        print('After step ' + str(i + 1) + ':')
-        printnumbers(numbers1)
-        print('Step ' + str(i + 1) + ' is the first step during which all octopuses flash.')
+        print('--- Part Two ---')
+        print('Step ' + C1 + str(i + 1) + C0 + ' is the first step during which all octopuses flash.', end = '\n' * 2)
         break
     flashesold = flashes

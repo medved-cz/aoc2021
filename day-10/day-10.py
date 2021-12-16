@@ -1,14 +1,25 @@
 #!/usr/bin/env python3
 
+
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 10: Syntax Scoring ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
 def printlist(list):
     for i in range(len(list)):
         print(str(i).rjust(3) + ': ' + list[i])
     print()
 
-input = open("input", "r")
-#input = open("input-test", "r")
+input = open(data, "r")
 
 chunks = input.readlines()
+input.close
 incomplete = [''] * len(chunks)
 errors = [''] * len(chunks)
 for n in range(len(chunks)):
@@ -51,7 +62,8 @@ for line in errors:
             if line == ch[c][1]:
                 value += ch[c][2]
 
-print(value)
+print('--- Part One ---')
+print('Total syntax error score is: ' + C1 + str(value) + C0, end = '\n' * 2)
 
 value = 0
 list = []
@@ -66,12 +78,5 @@ for line in incomplete:
         value = 0
 list.sort()
 
-print(list[int(len(list)/2)])
-
-
-
-
-
-
-
-
+print('--- Part Two ---')
+print('Middle score is: ' + C1 + str(list[int(len(list)/2)]) + C0, end = '\n' * 2)

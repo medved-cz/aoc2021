@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 13: Transparent Origami ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
 def formatpaper(x, y):
     paper = []
     for i in range(y):
@@ -9,6 +19,7 @@ def formatpaper(x, y):
     return(paper)
 
 def printpaper(paper):
+    print(C1, end = '')
     for i in range(len(paper)):
         for j in range(len(paper[i])):
             if paper[i][j] == 0:
@@ -16,7 +27,7 @@ def printpaper(paper):
             else:
                 print('#', end = '')
         print()
-    print()
+    print(C0)
 
 def foldpaper(paper, fold):
     if fold[0] == 'y':
@@ -44,8 +55,7 @@ def countdots(paper):
     return(count)
 
 
-with open('input') as input:
-#with open('input-test') as input:
+with open(data) as input:
     lines = input.read().splitlines()
 blankline = 0
 maxx = 0
@@ -82,8 +92,10 @@ c = 0
 for fold in folds:
     paper = foldpaper(paper, fold)
     c += 1
-    print('After fold number ' + str(c) + ' there are ' + str(countdots(paper)) + ' dots on paper.')
+    if c ==1:
+        print('--- Part One ---')
+        print('There are ' + C1 + str(countdots(paper)) + C0 + ' dots on paper after first fold.', end = '\n' * 2)
 
-print()
+print('--- Part Two ---', end = '\n' * 2)
 printpaper(paper)
-print('That is paper after last fold.')
+print('That is paper after last fold.', end = '\n' * 2)

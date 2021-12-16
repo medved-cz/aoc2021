@@ -10,8 +10,6 @@ print()
 print('--- Day 8: Seven Segment Search ---')
 print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
 
-input = open(data, "r")
-
 def sort(string):
     return(''.join(sorted(string)))
 
@@ -62,6 +60,7 @@ def getdigits(codes):
 
     return(digits)
 
+input = open(data, "r")
 lines = input.readlines()
 input.close()
 numlines = len(lines)

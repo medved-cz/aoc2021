@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
 
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 9: Smoke Basin ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
 def split(word):
     return list(word)
 
@@ -23,10 +33,9 @@ def printnumberslong(numbers,lenght):
         print(u'\u2560' + (u'\u2550' * lenght + u'\u256c') * (len(numbers[0]) - 1) + u'\u2550' * lenght + u'\u2563')
     print(u'\u255a' + (u'\u2550' * lenght + u'\u2569') * (len(numbers[0]) - 1) + u'\u2550' * lenght + u'\u255d')
 
-input = open("input", "r")
-#input = open("input-test", "r")
-
+input = open(data, "r")
 inputlist = input.readlines()
+input.close
 lines = len(inputlist)
 rows = len(inputlist[0].replace('\n',''))
 numbers1 = [0] * lines
@@ -62,7 +71,9 @@ for y in range(lines):
     for x in range(rows):
         if numbers2[y][x] >= 1:
             risk = risk + 1 + numbers1[y][x]
-print(risk)
+
+print('--- Part One ---')
+print('Answer is: ' + C1 + str(risk) + C0, end = '\n' * 2)
 
 change = True
 basins = [1] * counter
@@ -94,4 +105,6 @@ while change:
                             basins[i] += 1
                             change = True
 basins.sort(reverse=True)
-print(basins[0]*basins[1]*basins[2])
+
+print('--- Part Two ---')
+print('Answer is: ' + C1 + str(basins[0]*basins[1]*basins[2]) + C0, end = '\n' * 2)
