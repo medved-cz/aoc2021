@@ -2,6 +2,16 @@
 
 import copy
 
+C1 = '\033[92m'
+C0 = '\033[0m'
+
+data = 'input'
+#data = 'input-test'
+
+print()
+print('--- Day 14: Extended Polymerization ---')
+print('Input file is: ' +C1 + str(data) + C0, end = '\n' * 2)
+
 def getpairs(polymer):
     pairs = []
     length = len(polymer)
@@ -15,8 +25,7 @@ def resetpairs(pairs):
         pairs[i][1] = 0
     return(pairs)
 
-with open('input') as input:
-#with open('input-test') as input:
+with open(data) as input:
     pairins = input.read().splitlines()
 
 polymer = pairins[0]
@@ -66,9 +75,9 @@ for i in range(1,steps + 1):
     if i == 10:
         value = max(count) - min(count)
         print('--- Part One ---')
-        print('Answer is: ' + str(value))
+        print('Answer is: ' + C1 + str(value) + C0)
         print()
 
 value = max(count) - min(count)
 print('--- Part Two ---')
-print('Answer is: ' + str(value))
+print('Answer is: ' + C1 + str(value) + C0)
